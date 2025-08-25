@@ -3,14 +3,14 @@ import threading
 import cv2
 import time
 import os
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 import wave
 
 # --- Configuración ---
 VIDEO_FOLDER = 'videos'
 HOST = '0.0.0.0'
 VIDEO_PORT = 5000
-AUDIO_PORT = 5001 # Puerto separado para el audio
+AUDIO_PORT = 5001
 CHUNK_SIZE = 1024
 # -------------------
 
