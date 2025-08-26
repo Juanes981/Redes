@@ -6,13 +6,11 @@ import os
 from moviepy import VideoFileClip
 import wave
 
-# --- Configuración ---
 VIDEO_FOLDER = 'videos'
-HOST = '0.0.0.0'
+HOST = '192.168.1.65'
 VIDEO_PORT = 5000
 AUDIO_PORT = 5001
 CHUNK_SIZE = 1024
-# -------------------
 
 def get_video_list():
     if not os.path.exists(VIDEO_FOLDER): os.makedirs(VIDEO_FOLDER)
@@ -133,7 +131,7 @@ def main():
     audio_server_socket.bind((HOST, AUDIO_PORT))
     audio_server_socket.listen(5)
     
-    print("Servidores de Video y Audio listos.")
+    print("Conectado...esperando usuario...")
     while True:
         video_conn, addr = video_server_socket.accept()
         threading.Thread(target=handle_client, args=(video_conn, addr)).start()
