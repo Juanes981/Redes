@@ -4,7 +4,7 @@ import numpy as np
 import pyaudio
 import threading
 
-HOST = '192.168.1.65'
+HOST = '10.21.49.46'
 VIDEO_PORT = 5000
 AUDIO_PORT = 5001
 CHUNK = 1024

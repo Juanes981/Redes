@@ -7,7 +7,7 @@ from moviepy import VideoFileClip
 import wave
 
 VIDEO_FOLDER = 'videos'
-HOST = '192.168.1.65'
+HOST = '10.21.49.46'
 VIDEO_PORT = 5000
 AUDIO_PORT = 5001
 CHUNK_SIZE = 1024
