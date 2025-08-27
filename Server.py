@@ -19,6 +19,7 @@ def get_video_list():
 def send_video(client_socket, video_path, stop_event):
     videoCapture = cv2.VideoCapture(video_path)
     if not videoCapture.isOpened(): return
+
     fps = videoCapture.get(cv2.CAP_PROP_FPS)
     if fps == 0: fps = 30
     intervalo = 1 / fps
@@ -27,8 +28,9 @@ def send_video(client_socket, video_path, stop_event):
     while not stop_event.is_set():
         ret, frame = videoCapture.read()
         if not ret: break
-        
+
         frame_reducido = cv2.resize(frame, (0, 0), fx=0.75, fy=0.75)
+        
         encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 60]
         _, buffer = cv2.imencode('.jpg', frame_reducido, encode_param)
         data = buffer.tobytes()
@@ -131,7 +133,7 @@ def main():
     audio_server_socket.bind((HOST, AUDIO_PORT))
     audio_server_socket.listen(5)
     
-    print("Conectado...esperando usuario...")
+    print(f"Conectado en {HOST} esperando conexión del usuario...")
     while True:
         video_conn, addr = video_server_socket.accept()
         threading.Thread(target=handle_client, args=(video_conn, addr)).start()

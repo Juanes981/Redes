@@ -48,7 +48,8 @@ def watch_video(video_socket):
     
     cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
    
-    print("Iniciando video... 'm' para menú, 'q' para salir.")
+    print("Iniciando video.")
+    print("Preciona'm' para ir al menú o 'q' para desconectarte.")
     try:
         while True:
             size_data = recvall(video_socket, 4)
@@ -94,7 +95,7 @@ def main():
     video_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         video_socket.connect((HOST, VIDEO_PORT))
-        print("Conectado al servidor.")
+        print("Conectado al servidor")
     except Exception as e:
         print(f"Error al conectar: {e}")
         return
@@ -109,15 +110,15 @@ def main():
             if response.startswith("MENU"):
                 print("\n--- Menú de Videos ---")
                 print(response[5:])
-                choice = input("Elige un video o escribe 'exit': ")
-                if choice.lower() == 'exit':
+                choice = input("Elige un video o escribe 'q' para desconectarte: ")
+                if choice.lower() == 'q':
                     video_socket.sendall(b'EXIT')
                     break
                 video_socket.sendall(f'PLAY {choice}'.encode('utf-8'))
             
             elif response.startswith("START_STREAM"):
                 result = watch_video(video_socket)
-                if result == 'exit':
+                if result == 'q':
                     break
             
             elif response.startswith("ERROR"):
