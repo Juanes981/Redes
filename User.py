@@ -8,7 +8,7 @@ HOST = '192.168.1.65'
 VIDEO_PORT = 5000
 AUDIO_PORT = 5001
 CHUNK = 1024
-WINDOW_NAME = '...' 
+WINDOW_NAME = 'Video' 
 
 def recvall(sock, n):
     data = b''
